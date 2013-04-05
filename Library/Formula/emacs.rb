@@ -18,10 +18,8 @@ class Emacs < Formula
     head 'bzr://http://bzr.savannah.gnu.org/r/emacs/trunk'
   end
 
-  if build.head? or build.include? "cocoa"
-    depends_on :autoconf
-    depends_on :automake
-  end
+  depends_on :autoconf
+  depends_on :automake
   depends_on :x11 if build.include? "with-x"
 
   fails_with :llvm do
@@ -136,5 +134,9 @@ class Emacs < Formula
     EOS
 
     return s
+  end
+
+  def patches
+    "https://gitorious.org/emacs-ns-fullscreen/emacs-ns-fullscreen/commit/4062c2808ef5fc1e59e6a8bdbe956e6590b4889a?format=patch"
   end
 end
